@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Belajar ReactJS WPU</title>
+    <!-- react -->
+    <script src="https://unpkg.com/react@18/umd/react.development.js"></script>
+    <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+    
+    <!-- babel -->
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+</head>
+<body>
+    <div id="root"></div>
+
+    <script type="text/babel">
+        const container = document.getElementById('root');
+        const root = ReactDOM.createRoot(container);
+
+        // props
+        // function Header(props){
+        //     return(<h1>Test React {props.name} 🚀</h1>);
+        // }
+        // destructuring obj & ternary operation
+        function Header({name}){
+            return(<h1>Test React {name ? name : 'Kevin'} 🚀</h1>);
+        }
+
+        // nested component
+        // looping & unique key
+        const students = ['Kevin', 'Amel', 'Dina']
+        function HomePage(){
+            // state & hooks
+            const [like, setLike] = React.useState(0);
+            // const [varName, stateUpdaterFunc] = hooks();
+
+            function handleClick(){
+                setLike(like + 1);
+            }
+            return(
+                <>
+                    <Header />
+                    <Header name="Amel" />
+                    <ul>
+                        { students.map((student) => (
+                            <li key={student}>{student}</li>))
+                        }
+                    </ul>
+                    <button onClick={handleClick}>Like({like})</button>
+                </>
+            )
+        }
+
+
+        root.render(<HomePage />);
+    </script>
+</body>
+</html>
